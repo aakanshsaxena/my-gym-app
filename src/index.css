@@ -1,3 +1,15 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'LibertinusSerif-Italic';
+  src: url('/fonts/LibertinusSerif-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -66,8 +78,3 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
-/* src/index.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

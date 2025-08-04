@@ -6,7 +6,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'realce': ['LibertinusSerif-Italic', 'serif'],
+      },
+    },
   },
   plugins: [],
 }

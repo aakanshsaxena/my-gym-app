@@ -1,5 +1,6 @@
 // src/components/Dashboard.jsx
 import React, { useState, useEffect } from 'react';
+import AnimatedGreeting from './AnimatedGreeting'; // Import the new component
 
 const Dashboard = ({ user, userWorkout, onStartWorkout, onSkipWorkout }) => {
   const { programStatus, programName, workoutDetails } = userWorkout;
@@ -17,8 +18,8 @@ const Dashboard = ({ user, userWorkout, onStartWorkout, onSkipWorkout }) => {
       case 'workout':
         return (
           <>
-            <h1 className="text-5xl font-extrabold mb-2 text-yellow-400">
-              Hello, {user.username}
+            <h1 className="text-5xl mb-2 text-yellow-400">
+              <AnimatedGreeting username={user.username} />
             </h1>
             <p className="text-xl text-gray-300 mb-6">
               Today is your <span className="font-semibold">{programName}</span> workout.
@@ -86,7 +87,7 @@ const Dashboard = ({ user, userWorkout, onStartWorkout, onSkipWorkout }) => {
         return (
           <div className="text-center">
             <h1 className="text-5xl font-extrabold text-yellow-400 mb-2">
-              Hello, {user.username}
+              <AnimatedGreeting username={user.username} />
             </h1>
             <p className="text-xl text-gray-300 mb-4">
               {currentDateTime.toLocaleDateString('en-US', {
