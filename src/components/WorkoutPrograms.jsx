@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-const workoutPrograms = [
+export const workoutPrograms = [
   { id: 1, name: 'Push/Pull/Legs (PPL)', description: 'A classic 6-day split for building muscle and strength.' },
   { id: 2, name: 'StrongLifts 5x5', description: 'A beginner-friendly program focused on compound lifts to build raw strength.' },
   { id: 3, name: 'Full Body HIIT', description: 'High-intensity interval training to burn fat and improve cardiovascular health.' },
@@ -15,7 +15,7 @@ const workoutPrograms = [
   { id: 10, name: 'Running for Endurance', description: 'A structured running program for beginners to advanced runners.' },
 ];
 
-const WorkoutPrograms = () => {
+const WorkoutPrograms = ({ onSelectProgram }) => {
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -67,7 +67,9 @@ const WorkoutPrograms = () => {
               canScrollLeft ? 'hover:bg-gray-700' : 'opacity-50 cursor-not-allowed'
             }`}
           >
-            <img src="/images/left-arrow.svg" alt="Scroll left" className="h-6 w-6" />
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
           </button>
           <button
             onClick={() => handleScroll(1)}
@@ -76,7 +78,9 @@ const WorkoutPrograms = () => {
               canScrollRight ? 'hover:bg-gray-700' : 'opacity-50 cursor-not-allowed'
             }`}
           >
-            <img src="/images/right-arrow.svg" alt="Scroll right" className="h-6 w-6" />
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </button>
         </div>
       </div>
@@ -84,7 +88,8 @@ const WorkoutPrograms = () => {
       <motion.div
         ref={scrollRef}
         onScroll={updateScrollState}
-        className="flex overflow-x-hidden pb-4 scrollbar-hide"
+        className="flex overflow-x-auto pb-4"
+        style={{ scrollbarWidth: 'none', '-ms-overflow-style': 'none' }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -92,7 +97,8 @@ const WorkoutPrograms = () => {
         {workoutPrograms.map((program, index) => (
           <React.Fragment key={program.id}>
             <motion.div
-              className="workout-card group flex-none w-1/4 h-48 bg-gray-700 rounded-[5px] p-6 shadow-xl transition-all duration-300 cursor-pointer relative overflow-hidden"
+              className="workout-card group flex-none w-1/4 h-48 bg-gray-700 rounded-lg p-6 shadow-xl transition-all duration-300 cursor-pointer relative overflow-hidden"
+              onClick={() => onSelectProgram(program)}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{
@@ -113,7 +119,7 @@ const WorkoutPrograms = () => {
               </div>
             </motion.div>
             {index < workoutPrograms.length - 1 && (
-              <div className="h-48 w-px bg-gray-800 mx-3" />
+              <div className="flex-none w-6" />
             )}
           </React.Fragment>
         ))}
