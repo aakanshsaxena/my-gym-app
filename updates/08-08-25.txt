@@ -1,0 +1,3 @@
+Currently:
+1. Opened new domain (nextset.dev)
+2. Configured NS in Route 53 to make it easier to work with AWS
